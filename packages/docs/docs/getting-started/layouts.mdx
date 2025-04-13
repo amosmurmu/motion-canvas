@@ -70,7 +70,7 @@ class has additional `size` and `offset` properties:
 <ApiSnippet url={'/api/2d/components/Layout#offset'} />
 <hr />
 
-## Opting Out of Layout 
+## Opting out of layout 
 
 You can disable the layout behaviour by passing `layout={false}` to your component:
 
@@ -81,22 +81,29 @@ You can disable the layout behaviour by passing `layout={false}` to your compone
 </Layout>
 ```
 
-This behaves almost similar to **absolute postioning** in CSS Flexbox: 
+This behaves like absolute postioning in CSS Flexbox: 
 - The node doesn't affect or get affected by layout flow
+- The node doesn't lay out its own children
 - You're responsible for positioning it manually
 - It can still be visually inside a layout container
 
 ```css
-.parent{
-  display:flex;
+.parent {
+  display: flex;
 }
 
-.child{
+.child {
   position: absolute;
 }
 ```
 
-You can learn more about such layout exceptions in the [Groups](#groups) section below.
+### `Layout.layout`
+
+<ApiSnippet url={'/api/2d/components/Layout#layout'} />
+<hr/>
+
+You can learn more about layout exceptions in the [Groups](#groups) section below.
+
 ## Cardinal directions
 
 Layout nodes come with a set of helper properties that let you position them in
