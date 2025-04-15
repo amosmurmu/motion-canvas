@@ -72,7 +72,7 @@ class has additional `size` and `offset` properties:
 
 ## Opting out of layout 
 
-You can disable the layout behaviour by passing `layout={false}` to your component:
+You can disable layout behavior by passing `layout={false}` to your component:
 
 ```tsx
 <Layout layout direction="row">
@@ -97,12 +97,28 @@ This behaves like absolute postioning in CSS Flexbox:
 }
 ```
 
-### `Layout.layout`
-
-<ApiSnippet url={'/api/2d/components/Layout#layout'} />
-<hr/>
-
 You can learn more about layout exceptions in the [Groups](#groups) section below.
+
+## Groups
+
+Nodes that don't extend the `Layout` class, such as the `Node` itself, are
+unaffected by the layout and are treated as if they were never there. This lets
+you apply filters and transformations to layout nodes without affecting the
+hierarchy.
+
+From the layout's perspective, all `<Rect>`s in the example below are siblings:
+
+```tsx
+<Layout direction={'column'} width={960} gap={40} layout>
+  <Node opacity={0.1}>
+    <Rect height={240} fill={'#ff6470'} />
+    <Rect height={240} fill={'#ff6470'} />
+  </Node>
+  <Rect height={240} fill={'#ff6470'} />
+</Layout>
+```
+
+<AnimationPlayer name="layout-group" small />
 
 ## Cardinal directions
 
@@ -194,26 +210,5 @@ useful properties are listed below:
 
 <ApiSnippet url={'/api/2d/components/Layout#justifyContent'} />
 <hr />
-
-## Groups
-
-Nodes that don't extend the `Layout` class, such as the `Node` itself, are
-unaffected by the layout and are treated as if they were never there. This lets
-you apply filters and transformations to layout nodes without affecting the
-hierarchy.
-
-From the layout's perspective, all `<Rect>`s in the example below are siblings:
-
-```tsx
-<Layout direction={'column'} width={960} gap={40} layout>
-  <Node opacity={0.1}>
-    <Rect height={240} fill={'#ff6470'} />
-    <Rect height={240} fill={'#ff6470'} />
-  </Node>
-  <Rect height={240} fill={'#ff6470'} />
-</Layout>
-```
-
-<AnimationPlayer name="layout-group" small />
 
 [flexbox]: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
