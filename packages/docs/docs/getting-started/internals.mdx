@@ -4,17 +4,17 @@
 
 ---
 
-## 🧠 It's Canvas!
+## It's Canvas!
 
  Everything is rendered on `<canvas>`. [Canvas API on MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D).
 
 ---
 
-## ⚙ Scene Graph and Components
+## Scene Graph and Components
 
 - Node-based structure (like React but on canvas)
 - Tree of [`Node`](/api/2d/components/Node),[`Rect`](/api/2d/components/Rect), [`Circle`](/api/2d/components/Circle), etc.
-- You can create custom components that extend `Node` 
+- You can create custom components that extend [`Node`](/api/2d/components/Node)
 - A Scene is a container for visual elements 
     - has its own timeline segment
     - contains a node tree 
@@ -22,7 +22,7 @@
 
 ---
 
-## 📽 Project and Timeline
+## Project and Timeline
 
 - Project is a collection of scenes and maintains references to all scenes
 - Timeline is a collection of keyframes and animations 
@@ -31,11 +31,11 @@
 
 ---
 
-## ⚡ Reactivity with Signals
+## Reactivity with Signals
 
 - Signal enables animations through [`createSignal()`](/api/core/signals#createSignal) function and [`@signal()`](/api/2d/decorators/#signal)
-- `@signal` is a decorator that makes a property reactive
-- `createSignal` is a function that creates a signal
+- [`@signal()`](/api/2d/decorators/#signal) is a decorator that makes a property reactive
+- [`createSignal()`](/api/core/signals#createSignal) is a function that creates a signal
 - You can see more in [Signals](https://motioncanvas.io/docs/signals)
 
 ```tsx
@@ -45,22 +45,22 @@ const [value, setValue] = createSignal(0);
 // Using a signal decorator
 export class Counter extends Node {
   @signal()
-  public count = 0;
+  public declare count: SimpleSignal<number, this>;
 
   constructor() {
     super();
-    this.count = 10; // Triggers reactivity
+    this.count(10); // Triggers reactivity
   }
 
 }
 // Animate with signals
-yield* circle.position.x.animate(-200,200,1);
+yield* circle.position.x([-300, 300], 2);
 
 ```
 
 ---
 
-## 🔧 Rendering to Canvas
+## Rendering to Canvas
 
 - MotionCanvas uses HTML5 Canvas rendering context
 - The renderer starts with the root node and recursively traverses the scene graph
@@ -79,7 +79,7 @@ yield* circle.position.x.animate(-200,200,1);
 - You can see more in [ThreadGenerator](/api/core/threading#ThreadGenerator)
 ---
 
-## 🧩 Data Flow:
+## Data Flow:
 
 - Project checks the current time 
 - Signals are evaluated based on time 
@@ -91,7 +91,7 @@ yield* circle.position.x.animate(-200,200,1);
 
 --- 
 
-## 🕰 Time-based Flow:
+## Time-based Flow:
 
 - Generator functions control timing
 - `yield* ` syntax pauses execution
@@ -103,7 +103,7 @@ yield* circle.position.x.animate(-200,200,1);
 - You can see more in [Animation Flow](/docs/animation-flow) and [Time Events](/docs/time-events)
 ---
 
-## 🔗 Resources
+## Resources
 
 - [Canvas API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 - [MotionCanvas API Docs](https://motioncanvas.io/api/core)
